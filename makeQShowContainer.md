@@ -1,5 +1,5 @@
 # Making the qShow container component
-There should be a component which takes the following as arguments
+There should be a component which takes the following as props
 - [ ] score
 - [ ] q-number, qs-in-set to eventually enable a progress bar
 - [ ] question object, with fields: qType, question, answer (this will be extended later)
