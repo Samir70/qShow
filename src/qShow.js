@@ -1,7 +1,7 @@
 Vue.component('qShow', {
     props: {
         score: Number,
-        progress: Array, // [completed, total Qs] = completed/totalQs
+        qNumber: Number, qsInList:Number, // eventually used for a progress bar
         livesLeft: Number,
         questions: Array // of question objects, at least one element 
     },
@@ -9,8 +9,8 @@ Vue.component('qShow', {
         <div>
             <div><p>Score: {{score}}</p></div>
             <div><p>{{livesLeft}} Lives</p></div>
-            <div><p>Progress: {{progress[0]}}/{{progress[1]}}</p></div>
-            <div><p>Space for the question</p></div>
+            <div><p>Progress: {{qNumber}}/{{qsInList}}</p></div>
+            <div><p>Q:{{questions[qNumber-1].question}}</p></div>
         </div>
     `
 })

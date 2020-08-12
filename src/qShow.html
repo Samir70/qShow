@@ -9,7 +9,7 @@
 </head>
 <body>
     <div id="container">
-        <q-show score="5" progress="[1, 10]" livesLeft="3" v-bind:questions="qList"></q-show>
+        <q-show score="5" q-number="5" qs-in-list="5" lives-left="3" v-bind:questions="qList"></q-show>
     </div>
     <script src="qShow.js"></script>
     <script>
@@ -17,7 +17,11 @@
             el: "#container",
             data: {
                 qList: [
-                    {qType: 'Q and A', question:'What is 2+2?', answer:4}
+                    {qType: 'Q and A', question:'What is 2+1?', answer:3},
+                    {qType: 'Q and A', question:'What is 2+2?', answer:4},
+                    {qType: 'Q and A', question:'What is 2+3?', answer:5},
+                    {qType: 'Q and A', question:'What is 2+4?', answer:6},
+                    {qType: 'Q and A', question:'What is 2+5?', answer:7}
                 ]
             }
         })
