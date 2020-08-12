@@ -12,7 +12,7 @@
 <body>
     <div id="container">
         <q-show v-bind:score="score" v-bind:lives-left="livesLeft" v-bind:q-number="qNumber"
-            v-bind:qs-in-list="qsInList" v-bind:questions="qList"></q-show>
+            v-bind:questions="qList"></q-show>
     </div>
     <script src="qShow.js"></script>
     <script>
@@ -20,7 +20,7 @@
             el: "#container",
             data: {
                 score: 5, livesLeft: 3,
-                qNumber: 2, qsInList: 5,
+                qNumber: 2, 
                 qList: [
                     { qType: 'Q and A', question: 'What is 2+1?', answer: 3 },
                     { qType: 'Q and A', question: 'What is 2+2?', answer: 4 },

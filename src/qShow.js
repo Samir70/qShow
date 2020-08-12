@@ -9,7 +9,7 @@ Vue.component('qShow', {
         <div>
             <div><p>Score: {{score}}</p></div>
             <div><p>{{livesLeft}} Lives</p></div>
-            <div><p>Progress: {{qNumber}}/{{qsInList}}</p></div>
+            <div><p>Progress: {{qNumber}}/{{questions.length}}</p></div>
             <div><p>Q:{{questions[qNumber-1].question}}</p></div>
         </div>
     `
