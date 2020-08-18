@@ -1,16 +1,16 @@
-# Making the qShow container component
-There should be a component which takes the following as props
+# Making the qShow container 
+This will be an html page with a Vue instance that has the following data
 - [ ] score
-- [ ] q-number, to eventually enable a progress bar
-- [ ] questions: an array of question objects, with fields: qType, question, answer (this will be extended later)
-- [ ] status, eg: lives-left
+- [ ] qNumber, to eventually enable a progress bar
+- [ ] qList: an array of question objects, with fields: qType, question, answer (this will be extended later)
+- [ ] status, eg: livesLeft
 
 ## first commits
 - [ ] just display a description of what should be in that part of the screen. eg: 'score' 
-- [ ] pass an actual number as the score, which the component will display as text
-- [ ] pass an actual number as lives-left, which the component will display as text
-- [ ] pass q-number, which the component will display as text fraction top/questions.length
-- [ ] pass an array of question objects, the component will display the q-numberth question in that array
+- [ ] pass dummy data for score and livesLeft
+- [ ] pass an array of question objects, the component will eventually display the q-numberth question in that array
+- [ ] pass qNumber, which the component will display as text fraction top/qList.length in the space for progress
+- [ ] display the qNumberth question in qList
 
 ### validate
 - [ ] livesLeft should be non-negative
