@@ -17,6 +17,8 @@ This will be an html page with a Vue instance that has the following data
 - [ ] Progress bar should show a horizontal graphic and accurately indicate via text how many questions completed
 - [ ] The space for a question should have a border with rounded corners
 - [ ] There should be a submit button (could be 'check answer' or something)
+
+## functionality
 - [ ] Clicking the submit button should advance us through the questions (progress bar, score and lives should all update)
 
 ### validate
