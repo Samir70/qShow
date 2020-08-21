@@ -12,6 +12,13 @@ This will be an html page with a Vue instance that has the following data
 - [ ] pass qNumber, which the component will display as text fraction top/qList.length in the space for progress
 - [ ] display the qNumberth question in qList
 
+## style the qShow container
+- [ ] Score and lives left should be on the same line, top of the screen
+- [ ] Progress bar should show a horizontal graphic and accurately indicate via text how many questions completed
+- [ ] The space for a question should have a border with rounded corners
+- [ ] There should be a submit button (could be 'check answer' or something)
+- [ ] Clicking the submit button should advance us through the questions (progress bar, score and lives should all update)
+
 ### validate
 - [ ] livesLeft should be non-negative
 - [ ] qNumber should be between 1 and the number of qs in the array
