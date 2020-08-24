@@ -17,11 +17,12 @@
             <div>{{livesLeft}} Lives</div>
         </div>
         <div id="prog-space">
-            <progress id="prog-bar" v-bind:value="qNumber" v-bind:max="qList.length">Progress: {{qNumber}}/{{qList.length}}</progress>
+            <progress id="prog-bar" v-bind:value="qNumber+1" v-bind:max="qList.length">Progress: {{qNumber}}/{{qList.length}}</progress>
             <label for="prog-bar">You have answered {{qNumber}} out of {{qList.length}}</label>
         </div>
         <div id="q-space">
-            <p>Q:{{qList[qNumber-1].question}}</p>
+            <p>Q:{{qList[qNumber].question}}</p>
+            <button v-on:click="checkAnswer">Check Answer</button>
         </div>
     </div>
     <script src="qShow.js"></script>
@@ -29,8 +30,8 @@
         var quiz = new Vue({
             el: "#container",
             data: {
-                score: 5, livesLeft: 3,
-                qNumber: 3,
+                score: 0, livesLeft: 3,
+                qNumber: 0,
                 qList: [
                     { qType: 'Q and A', question: 'What is 2+1?', answer: 3 },
                     { qType: 'Q and A', question: 'What is 2+2?', answer: 4 },
@@ -38,6 +39,19 @@
                     { qType: 'Q and A', question: 'What is 2+4?', answer: 6 },
                     { qType: 'Q and A', question: 'What is 2+5?', answer: 7 }
                 ]
+            },
+            methods: {
+                checkAnswer: function() {
+                    let correct = Math.random() < 0.5 ? true : false;
+                    if (correct) {
+                        this.score += 10;
+
+                    } else {
+                        this.livesLeft -= 1
+                    }
+                    this.qNumber++
+                    if (this.qNumber >= this.qList.length) {this.qNumber = 0}
+                }
             }
         })
     </script>
