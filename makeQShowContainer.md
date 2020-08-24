@@ -16,10 +16,13 @@ This will be an html page with a Vue instance that has the following data
 - [ ] Score and lives left should be on the same line, top of the screen
 - [ ] Progress bar should show a horizontal graphic and accurately indicate via text how many questions completed
 - [ ] The space for a question should have a border with rounded corners
-- [ ] There should be a submit button (could be 'check answer' or something)
+- [ ] There should be a check answer button (the function of this will eventually change depending on state of the app)
 
 ## functionality
-- [ ] Clicking the submit button should advance us through the questions (progress bar, score and lives should all update)
+- [ ] Clicking the check answer button should randomly decide if the answer was correct (for now) and the app should display a notice of right or wrong
+- [ ] Correctly answered questions are dropped from the qList
+- [ ] Cycle thru the questions until they have all been answered correctly. (Progress bar, score and lives should all update)
+- [ ] Running out of lives should end the quiz with a display of final score.
 
 ### validate
 - [ ] livesLeft should be non-negative
