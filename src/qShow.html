@@ -6,21 +6,21 @@
     <!-- This is the dev version of vue, change for production -->
     <script src='../VueSource/vue-dev.js'></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="qShow.css" >
     <title>qShow</title>
 </head>
 
 <body>
     <div id="container">
-        <div>
-            <p>Score: {{score}}</p>
+        <div id="score-lives-space">
+            <div>Score: {{score}}</div>
+            <div>{{livesLeft}} Lives</div>
         </div>
-        <div>
-            <p>{{livesLeft}} Lives</p>
+        <div id="prog-space">
+            <progress id="prog-bar" v-bind:value="qNumber" v-bind:max="qList.length">Progress: {{qNumber}}/{{qList.length}}</progress>
+            <label for="prog-bar">You have answered {{qNumber}} out of {{qList.length}}</label>
         </div>
-        <div>
-            <p>Progress: {{qNumber}}/{{qList.length}}</p>
-        </div>
-        <div>
+        <div id="q-space">
             <p>Q:{{qList[qNumber-1].question}}</p>
         </div>
     </div>
