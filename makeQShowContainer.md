@@ -11,6 +11,7 @@ This will be an html page with a Vue instance that has the following data
 - [ ] pass an array of question objects, the component will eventually display the q-numberth question in that array
 - [ ] pass qNumber, which the component will display as text fraction top/qList.length in the space for progress
 - [ ] display the qNumberth question in qList
+- [ ] create a list of dummy questions, at least one question for each question type
 
 ## style the qShow container
 - [ ] Score and lives left should be on the same line, top of the screen
