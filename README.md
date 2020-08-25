@@ -42,6 +42,9 @@ This could be limited by screen size unless the answers are short. The basic ide
 - [ ] User is given two or three buckets and must drag the options to the correct one. 
 - [ ] options can be displayed all at once or in the order in which they should be classified.
 - [ ] if user gets one wrong and not all displayed, that one should go to end of list to be tried again later. Otherwise, if all displayed, let them guess again -- but then repeat the options they got wrong at the end.
+- [ ] question object will include type, question text and two arrays of the same length.
+- the first array lists the buckets
+- the second array contains lists of what should be in each bucket
 
 ## The Question Object
 - [ ] Contain question and answer -- wrong answers for multiple choice
