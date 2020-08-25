@@ -18,8 +18,9 @@ A project to display various types of questions in various ways. This first comm
 - [ ] If some of the wrong answers are provided as traps, then consider giving feedback in the question object.
 
 ### Put into order
-A list is given with a desired order required. Eg: sort these people by date of birth: Mozart, Jesus, Ghandi, Napolean
-Ideally: drag and drop would be the option, but click to raise may be a good start.
+- [ ] A list is given with a desired order required. Eg: sort these people by date of birth: Mozart, Jesus, Ghandi, Napolean
+- [ ] The question object includes the type, question text and the options in the required order -- the display will rearrange these.
+- [ ] Ideally: drag and drop would be the option, but click to raise may be a good start.
 
 ### Typed answer required
 String or number -- the later should have a keypad and no input box, so the display on mobiles doesn't get spolied by the keyboard coming up.
