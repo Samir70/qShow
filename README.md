@@ -32,6 +32,7 @@ This could be limited by screen size unless the answers are short. The basic ide
 - [ ] option to skip 
 - [ ] if user gives wrong answer, it goes red. 
 - [ ] no option to immediately retry after wrong answer, just a nextQ button
+- [ ] this question object includes type and a list of text questions and a list of answers
 
 ### Matching questions
 - [ ] User clicks one word then must click the other which matches according to some rule
