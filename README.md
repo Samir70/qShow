@@ -36,6 +36,7 @@ This could be limited by screen size unless the answers are short. The basic ide
 ### Matching questions
 - [ ] User clicks one word then must click the other which matches according to some rule
 - [ ] (optional) Pelmanism type of matching with cards that turn
+- [ ] the question object will include qType, question text and an array of pairs to be matched
 
 ### Classification
 - [ ] User is given two or three buckets and must drag the options to the correct one. 
