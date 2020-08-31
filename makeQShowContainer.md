@@ -21,7 +21,7 @@ This will be an html page with a Vue instance that has the following data
 
 ## functionality
 - [ ] Clicking the check answer button should randomly decide if the answer was correct (for now) and the app should display a notice of right or wrong
-- [ ] Correctly answered questions are dropped from the qList
+- [ ] Correctly answered questions are dropped from the qList (I decided to move them to the front and keep track of how many were answered correctly -- just in case the user wants to repeat all the questions).
 - [ ] Cycle thru the questions until they have all been answered correctly. (Progress bar, score and lives should all update)
 - [ ] Running out of lives should end the quiz with a display of final score.
 
