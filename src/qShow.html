@@ -56,6 +56,10 @@
                     } else {
                         this.livesLeft -= 1;
                         this.feedback = "Wrong!"
+                        if (this.livesLeft === 0) {
+                            this.feedback += " Out of juice! Final score is: "+this.score;
+                            this.moreQs = false;
+                        }
                     }
                     this.showFeedback = true;
                     if (this.gotCorrect === this.qList.length) {
