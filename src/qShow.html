@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- This is the dev version of vue, change for production -->
+    <script src='../VueSource/vue-dev.js'></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="qShow.css">
+    <title>qShow</title>
+</head>
+
+<body>
+    <div id="container">
+        <div id="score-lives-space">
+            <div>Score: {{score}}</div>
+            <div>{{livesLeft}} Lives</div>
+        </div>
+        <div id="prog-space">
+            <progress id="prog-bar" v-bind:value="gotCorrect" v-bind:max="qList.length">Progress:
+                {{qToShow}}/{{qList.length}}</progress>
+            <label for="prog-bar">You have answered {{gotCorrect}} out of {{qList.length}}</label>
+        </div>
+        <div id="q-space">
+            <p>Q:{{qList[qToShow].question}}</p>
+            <button v-if="!showFeedback" v-on:click="checkAnswer">Check Answer</button>
+            <p v-if="showFeedback">{{feedback}}</p>
+            <button v-if="moreQs&&showFeedback" v-on:click="nextQ">Next Q</button>
+            <p>{{qList}}</p>
+        </div>
+    </div>
+    <script>
+        var quiz = new Vue({
+            el: "#container",
+            data: {
+                score: 0, livesLeft: 3,
+                qToShow: 0, gotCorrect: 0,
+                qList: [
+                    { qType: 'Q and A', question: 'What is 2+1?', answer: 3 },
+                    { qType: 'Q and A', question: 'What is 2+2?', answer: 4 },
+                    { qType: 'Q and A', question: 'What is 2+3?', answer: 5 },
+                    { qType: 'Q and A', question: 'What is 2+4?', answer: 6 },
+                    { qType: 'Q and A', question: 'What is 2+5?', answer: 7 }
+                ],
+                showFeedback: true, showFeedback: false, moreQs: true,
+                feedback: 'Correct!',
+                userWasCorrect: false
+            },
+            methods: {
+                checkAnswer: function () {
+                    this.userWasCorrect = Math.random() < 0.5 ? true : false;
+                    if (this.userWasCorrect) {
+                        this.score += 10;
+                        this.feedback = "Correct!! "
+                        this.gotCorrect++;
+                    } else {
+                        this.livesLeft -= 1;
+                        this.feedback = "Wrong!"
+                        if (this.livesLeft === 0) {
+                            this.feedback += " Out of juice! Final score is: "+this.score;
+                            this.moreQs = false;
+                        }
+                    }
+                    this.showFeedback = true;
+                    if (this.gotCorrect === this.qList.length) {
+                        this.feedback += " You have answered all the questions!"
+                        this.moreQs = false;
+                    }
+                },
+                nextQ: function () {
+                    if (this.userWasCorrect) {
+                        if (this.qToShow !== this.gotCorrect - 1) {
+                            let temp = this.qList[this.gotCorrect - 1];
+                            this.qList[this.gotCorrect - 1] = this.qList[this.qToShow];
+                            this.qList[this.qToShow] = temp
+                        }
+                    }
+                    this.qToShow++
+                    if (this.qToShow >= this.qList.length) { this.qToShow = this.gotCorrect }
+                    this.showFeedback = false;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
