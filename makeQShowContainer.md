@@ -29,3 +29,9 @@ This will be an html page with a Vue instance that has the following data
 - [ ] livesLeft should be non-negative
 - [ ] qNumber should be between 1 and the number of qs in the array
 
+## Reacting to types of question
+- [ ] The app should react to the question type (If you haven't already: Make a qList object with at least one question for each qType) First reaction can simply be to state the type on screen.
+- [ ] Start adding a component for each qType (obv: this could be more than one commit) For each:
+- [ ] Component should have a display relavant to its type. Apps should have a consistent style between qTypes so share things like button styling etc
+- [ ] Display for each qType should contain everything needed for user to submit an answer -- so no more marking at random!
+
