@@ -26,22 +26,17 @@
             <button v-if="!showFeedback" v-on:click="checkAnswer">Check Answer</button>
             <p v-if="showFeedback">{{feedback}}</p>
             <button v-if="moreQs&&showFeedback" v-on:click="nextQ">Next Q</button>
-            <p>{{qList}}</p>
+            <p>{{qList.map(q => q.qType)}}</p>
         </div>
     </div>
+    <script src="dummyQs.js"></script>
     <script>
         var quiz = new Vue({
             el: "#container",
             data: {
                 score: 0, livesLeft: 3,
                 qToShow: 0, gotCorrect: 0,
-                qList: [
-                    { qType: 'Q and A', question: 'What is 2+1?', answer: 3 },
-                    { qType: 'Q and A', question: 'What is 2+2?', answer: 4 },
-                    { qType: 'Q and A', question: 'What is 2+3?', answer: 5 },
-                    { qType: 'Q and A', question: 'What is 2+4?', answer: 6 },
-                    { qType: 'Q and A', question: 'What is 2+5?', answer: 7 }
-                ],
+                qList: dummyQs,
                 showFeedback: true, showFeedback: false, moreQs: true,
                 feedback: 'Correct!',
                 userWasCorrect: false
