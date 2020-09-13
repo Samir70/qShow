@@ -17,7 +17,7 @@ body {
     margin:0px;
     padding:3px;
     display:grid;
-    grid-template-rows: 1fr 1fr 10fr; 
+    grid-template-rows: 1fr 1fr 10fr 2fr; 
 }
         
 
@@ -41,6 +41,11 @@ body {
 }
 
 #q-space {
+    border: 2px solid #6FF;
+    border-radius: 5%;
+    text-align: center;
+}
+#feedback-space {
     border: 2px solid #6FF;
     border-radius: 5%;
     text-align: center;

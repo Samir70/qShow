@@ -21,7 +21,11 @@
                 {{qToShow}}/{{qList.length}}</progress>
             <label for="prog-bar">You have answered {{gotCorrect}} out of {{qList.length}}</label>
         </div>
-        <div id="q-space">
+        <div id="q-space" v-if="!showFeedback">
+            <short-answer v-bind:q-data="qList[qToShow]" v-on:user-answered="checkAnswer" ></short-answer>
+            
+        </div>
+        <div id="feedback-space" v-if="showFeedback">
             <p>Q:{{qList[qToShow].question}}</p>
             <button v-if="!showFeedback" v-on:click="checkAnswer">Check Answer</button>
             <p v-if="showFeedback">{{feedback}}</p>
@@ -30,6 +34,7 @@
         </div>
     </div>
     <script src="dummyQs.js"></script>
+    <script src="./qTypeComponents/shortAnswer.js"></script>
     <script>
         var quiz = new Vue({
             el: "#container",
@@ -43,6 +48,7 @@
             },
             methods: {
                 checkAnswer: function () {
+                    console.log('checkanswer was run')
                     this.userWasCorrect = Math.random() < 0.5 ? true : false;
                     if (this.userWasCorrect) {
                         this.score += 10;
