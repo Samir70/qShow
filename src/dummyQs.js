@@ -1,5 +1,5 @@
 const dummyQs = [
-  { qType: 'shortAnswer', question: 'What is 2+1?', answer: 3 },
+  { qType: 'shortAnswer', question: 'What is 2+1?', answer: 3, feedback: '2+1 = 3' },
   {
     qType: 'multiChoice', question: 'What do you call the longest chord in a circle?',
     answer: 'diameter', wrongOptions: ['radius', 'tangent', 'line']

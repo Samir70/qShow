@@ -28,7 +28,9 @@
         <div id="feedback-space" v-if="showFeedback">
             <p>Q:{{qList[qToShow].question}}</p>
             <button v-if="!showFeedback" v-on:click="makeFeedback">Check Answer</button>
-            <p v-if="showFeedback">{{feedback}}</p>
+            <p v-if="showFeedback">{{feedback[0]}}</p>
+            <p v-if="showFeedback && feedback[1]">{{feedback[1]}}</p>
+            <p v-if="showFeedback && feedback[2]">{{feedback[2]}}</p>
             <button v-if="moreQs&&showFeedback" v-on:click="nextQ">Next Q</button>
             <p>{{qList.map(q => q.qType)}}</p>
         </div>
@@ -43,22 +45,23 @@
                 qToShow: 0, gotCorrect: 0,
                 qList: dummyQs,
                 showFeedback: true, showFeedback: false, moreQs: true,
-                feedback: 'Correct!',
+                feedback: ['Correct!', 'Another message'],
                 userWasCorrect: false
             },
             methods: {
                 makeFeedback: function (ans) {
                     console.log('makeFeedback was run ', ans)
-                    this.userWasCorrect = ans;
+                    this.userWasCorrect = ans.status;
+                    this.feedback = [ans.mark, ans.extra]
                     if (this.userWasCorrect) {
                         this.score += 10;
-                        this.feedback = "Correct!! "
+                        // this.feedback = "Correct!! "
                         this.gotCorrect++;
                     } else {
                         this.livesLeft -= 1;
-                        this.feedback = "Wrong!"
+                        // this.feedback = "Wrong!"
                         if (this.livesLeft === 0) {
-                            this.feedback += " Out of juice! Final score is: "+this.score;
+                            this.feedback.push(" Out of juice! Final score is: "+this.score);
                             this.moreQs = false;
                         }
                     }
