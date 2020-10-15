@@ -7,6 +7,8 @@ A project to display various types of questions in various ways. This first comm
 - [ ] score
 - [ ] status -- lives lost, maybe?
 
+There are more details on this in the readMe for [making the QShow container](https://github.com/Samir70/qShow/blob/master/makeQShowContainer.md)
+
 ## Question Types
 
 ### Multiple Choice
