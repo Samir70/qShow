@@ -27,7 +27,7 @@
             </short-answer>
             <div v-else>
                 <h2>I don't know how to show the qType {{qList[qToShow].qType}}</h2>
-                <button v-if="moreQs" v-on:click="nextQ">Next Q</button>
+                <short-answer v-bind:q-data="defaultQ" v-on:user-answered="makeFeedback"></short-answer>
             </div>
         </div>
         <div id="feedback-space" v-if="showFeedback">
@@ -49,6 +49,7 @@
                 score: 0, livesLeft: 3,
                 qToShow: 0, gotCorrect: 0,
                 qList: dummyQs,
+                defaultQ: defaultQ,
                 showFeedback: true, showFeedback: false, moreQs: true,
                 feedback: ['Correct!', 'Another message'],
                 userWasCorrect: false
@@ -66,13 +67,13 @@
                         this.livesLeft -= 1;
                         // this.feedback = "Wrong!"
                         if (this.livesLeft === 0) {
-                            this.feedback.push(" Out of juice! Final score is: " + this.score);
+                            this.feedback.push("Out of juice! Final score is: " + this.score);
                             this.moreQs = false;
                         }
                     }
                     this.showFeedback = true;
                     if (this.gotCorrect === this.qList.length) {
-                        this.feedback += " You have answered all the questions!"
+                        this.feedback.push("You have answered all the questions!")
                         this.moreQs = false;
                     }
                 },

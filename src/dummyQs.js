@@ -20,4 +20,10 @@ const dummyQs = [
     qType: 'elimination', qList: ['What is 3 x 5?', 'What is 30 - 2?', 'What is 24/4 ?'],
     answerList: [15, 28, 6]
   }
-]
+];
+
+const defaultQ = {
+  qType: 'shortAnswer',
+  question: 'What is the answer to life, the universe and everything?', 
+  answer: 42, feedback: 'Brain the size of a planet...!'
+};
