@@ -22,8 +22,13 @@
             <label for="prog-bar">You have answered {{gotCorrect}} out of {{qList.length}}</label>
         </div>
         <div id="q-space" v-if="!showFeedback">
-            <short-answer v-bind:q-data="qList[qToShow]" v-on:user-answered="makeFeedback" ></short-answer>
-            
+            <short-answer v-if="qList[qToShow].qType === 'shortAnswer'" v-bind:q-data="qList[qToShow]"
+                v-on:user-answered="makeFeedback">
+            </short-answer>
+            <div v-else>
+                <h2>I don't know how to show the qType {{qList[qToShow].qType}}</h2>
+                <button v-if="moreQs" v-on:click="nextQ">Next Q</button>
+            </div>
         </div>
         <div id="feedback-space" v-if="showFeedback">
             <p>Q:{{qList[qToShow].question}}</p>
@@ -61,7 +66,7 @@
                         this.livesLeft -= 1;
                         // this.feedback = "Wrong!"
                         if (this.livesLeft === 0) {
-                            this.feedback.push(" Out of juice! Final score is: "+this.score);
+                            this.feedback.push(" Out of juice! Final score is: " + this.score);
                             this.moreQs = false;
                         }
                     }
@@ -78,6 +83,7 @@
                             this.qList[this.gotCorrect - 1] = this.qList[this.qToShow];
                             this.qList[this.qToShow] = temp
                         }
+                        this.userWasCorrect = false;
                     }
                     this.qToShow++
                     if (this.qToShow >= this.qList.length) { this.qToShow = this.gotCorrect }
