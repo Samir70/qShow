@@ -21,24 +21,25 @@
                 {{qToShow}}/{{qList.length}}</progress>
             <label for="prog-bar">You have answered {{gotCorrect}} out of {{qList.length}}</label>
         </div>
-        <div id="q-space" v-if="!showFeedback">
-            <short-answer v-if="qList[qToShow].qType === 'shortAnswer'" v-bind:q-data="qList[qToShow]"
-                v-on:user-answered="makeFeedback">
-            </short-answer>
-            <div v-else>
-                <h2>I don't know how to show the qType {{qList[qToShow].qType}}</h2>
-                <short-answer v-bind:q-data="defaultQ" v-on:user-answered="makeFeedback"></short-answer>
+        <transition name="fade" mode="out-in">
+            <div v-if="!showFeedback" id="q-space" key="showQ">
+                <short-answer v-if="qList[qToShow].qType === 'shortAnswer'" v-bind:q-data="qList[qToShow]"
+                    v-on:user-answered="makeFeedback">
+                </short-answer>
+                <div v-else>
+                    <h2>I don't know how to show the qType {{qList[qToShow].qType}}</h2>
+                    <short-answer v-bind:q-data="defaultQ" v-on:user-answered="makeFeedback"></short-answer>
+                </div>
             </div>
-        </div>
-        <div id="feedback-space" v-if="showFeedback">
-            <p>Q:{{qList[qToShow].question}}</p>
-            <button v-if="!showFeedback" v-on:click="makeFeedback">Check Answer</button>
-            <p v-if="showFeedback">{{feedback[0]}}</p>
-            <p v-if="showFeedback && feedback[1]">{{feedback[1]}}</p>
-            <p v-if="showFeedback && feedback[2]">{{feedback[2]}}</p>
-            <button v-if="moreQs&&showFeedback" v-on:click="nextQ">Next Q</button>
-            <p>{{qList.map(q => q.qType)}}</p>
-        </div>
+            <div v-if="showFeedback" id="feedback-space" key="showFB">
+                <p>Q:{{qList[qToShow].question}}</p>
+                <p>{{feedback[0]}}</p>
+                <p v-if="feedback[1]">{{feedback[1]}}</p>
+                <p v-if="feedback[2]">{{feedback[2]}}</p>
+                <button v-if="moreQs" v-on:click="nextQ">Next Q</button>
+                <p>{{qList.map(q => q.qType)}}</p>
+            </div>
+        </transition>
     </div>
     <script src="dummyQs.js"></script>
     <script src="./qTypeComponents/shortAnswer.js"></script>
