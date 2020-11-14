@@ -24,6 +24,12 @@ There are more details on this in the readMe for [making the QShow container](ht
 - [ ] The question object includes the type, question text and the options in the required order -- the display will rearrange these.
 - [ ] Ideally: drag and drop would be the option, but click to raise may be a good start.
 
+In the context of putting lines of code into order, this type of questions are called Parson's problems. This is one of my target topics. But I don't want to have to check questions so that they have only one correct answer or to force question objects to list all possible correct answers (can still miss some). I think it is best to have a hint option. Some questions clearly have only one right answer.
+
+- [ ] If the hint option is enabled then objects to sort are colour coded as to whether they are in the correct place.
+
+This will still work for me in the coding questions because I will choose to engage with the task in a manner that requires me to think about the code.
+
 ### Typed answer required
 String or number -- the later should have a keypad and no input box, so the display on mobiles doesn't get spolied by the keyboard coming up.
 The former should not have a question that is too long, since it should be readable while the mobile keyboard is on.
