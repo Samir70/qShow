@@ -6,7 +6,7 @@ const dummyQs = [
   },
   {
     qType: 'sort', question: 'Sort these decimals into ascending order',
-    answer: [3.1, 3.024, 3.127, 3.14]
+    answer: [3.024, 3.1, 3.127, 3.14]
   },
   {
     qType: 'match', question: 'Match the following:',
