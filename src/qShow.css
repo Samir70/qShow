@@ -67,7 +67,10 @@ body {
     border-left: 3px solid red;
 }
 .right-pos {
-    border-left: 3px solid red;
+    border-left: 3px solid green;
+}
+.neutral-pos {
+    border-left: 3px solid blue;
 }
 .dragged-over {
     border: 2px dashed blue;

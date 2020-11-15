@@ -17,6 +17,7 @@ const shuffle = arr => {
 
 const WRONG = "dropzone sortq-li wrong-pos";
 const RIGHT = "dropzone sortq-li right-pos";
+const NEUTRAL = "dropzone sortq-li neutral-pos";
 
 /**
  * This display will display a short question / description of what to do
@@ -38,47 +39,90 @@ Vue.component('sortQ', {
         qData: Object
     },
     data: function () {
-        return { userWasCorrect: false, draggedItemID: -1, enteredElement:null }
+        return {
+            userWasCorrect: false,
+            draggedItemID: null, droppedOnID: null,
+            enteredElement: null
+        }
     },
     computed: {
         qText: function () { return this.qData.question },
         ans: function () { return this.qData.answer },
         userAnswer: function () {
+            let classToUse = this.qData.giveHint ? WRONG : NEUTRAL;
             return shuffle(
-                this.qData.answer.map((x, i) => { return { text: x, id: i, class: WRONG } })
+                this.qData.answer.map((x, i) => { return { text: x, id: i, class: classToUse } })
             )
         }
     },
     methods: {
         checkAnswer: function () {
             let mark = '';
-            let blandFB = 'The answer is ' + this.ans;
-            if (true/**test for correct */) {
+            let blandFB = 'You had a go!';
+            let noMistakes = true;
+            this.userAnswer.forEach((r, i) => {
+                if (r.id !== i) {noMistakes = false}
+            })
+            if (noMistakes) {
                 this.userWasCorrect = true;
                 mark = 'Correct! '
+                blandFB = 'Wow! Way to go!!!';
             } else {
                 this.userWasCorrect = false;
                 mark = 'Wrong! '
+                blandFB = 'Shame! Maybe Next time!';
             }
             let extra = (this.qData.feedback || blandFB)
             return { status: this.userWasCorrect, mark, extra }
         },
         onDragStart: function (event, item) {
-            console.log('started dragging the item with id', item.id);
+            // console.log('started dragging the item with id', item.id);
             this.draggedItemID = item.id;
             event.target.style.opacity = 0.4;
         },
-        DragEnd: function (event, item) {
+        onDragEnd: function (event) {
             event.target.style.opacity = 1;
+            if (this.enteredElement !== null && this.draggedItemID !== this.droppedOnID) {
+                this.enteredElement.classList.remove('dragged-over');
+                // console.log('we have dragged', this.draggedItemID, 'onto', this.droppedOnID);
+            }
+            let from = this.userAnswer.findIndex(x => x.id === this.draggedItemID);
+            let to = this.userAnswer.findIndex(x => x.id === this.droppedOnID);
+            if (from < to) {
+                let temp = this.userAnswer[from];
+                for (let i = from; i<to; i++) {
+                    this.userAnswer[i] = this.userAnswer[i+1]
+                }
+                this.userAnswer[to] = temp;
+            }
+            if (to < from) {
+                let temp = this.userAnswer[from];
+                for (let i = from; i > to; i--) {
+                    this.userAnswer[i] = this.userAnswer[i-1]
+                }
+                this.userAnswer[to] = temp;
+            }
+            this.userAnswer.forEach((r, i) => {
+                if (r.id === i) {
+                    r.class = this.qData.giveHint ? RIGHT : NEUTRAL;
+                } else {
+                    r.class = this.qData.giveHint ? WRONG : NEUTRAL
+                }
+            })
+            this.draggedItemID = null; this.droppedOnID = null;
+            // console.log(this.userAnswer);
+            this.$forceUpdate();
         },
         onDragEnter: function (event, item) {
-            if (event.target.classList === undefined) {return}
-            if (event.target === this.enteredElement) {return}
+            if (event.target.classList === undefined) { return }
+            if (event.target === this.enteredElement) { return }
             if (this.enteredElement !== null) {
                 this.enteredElement.classList.remove('dragged-over')
             }
+            event.preventDefault();
             this.enteredElement = event.target;
-            // console.log(this.enterCount, 'entered another element:', item.id);
+            this.droppedOnID = item.id;
+            // console.log('entered another element:', item.id);
             if (item.id !== this.draggedItemID && event.target.classList[0] === 'dropzone') {
                 event.target.classList.add('dragged-over');
             }
@@ -94,8 +138,9 @@ Vue.component('sortQ', {
                     v-bind:class="item.class" 
                     draggable=true
                     v-on:dragstart="onDragStart($event, item)"
-                    v-on:dragend="DragEnd($event, item)"
-                    v-on:dragenter.self="onDragEnter($event, item)">{{item}}
+                    v-on:dragend="onDragEnd"
+                    v-on:dragenter.prevent="onDragEnter($event, item)"
+                    v-on:dragover.prevent="">{{item.text}}
                 </li>
             </ul>
             <button v-on:click="checkAnswer; $emit('user-answered', checkAnswer())" >Check Answer</button>
