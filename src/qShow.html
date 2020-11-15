@@ -21,49 +21,64 @@
                 {{qToShow}}/{{qList.length}}</progress>
             <label for="prog-bar">You have answered {{gotCorrect}} out of {{qList.length}}</label>
         </div>
-        <div id="q-space">
-            <p>Q:{{qList[qToShow].question}}</p>
-            <button v-if="!showFeedback" v-on:click="checkAnswer">Check Answer</button>
-            <p v-if="showFeedback">{{feedback}}</p>
-            <button v-if="moreQs&&showFeedback" v-on:click="nextQ">Next Q</button>
-            <p>{{qList}}</p>
-        </div>
+        <transition name="fade" mode="out-in">
+            <div v-if="!showFeedback" id="q-space" key="showQ">
+                <short-answer v-if="qList[qToShow].qType === 'shortAnswer'" v-bind:q-data="qList[qToShow]"
+                    v-on:user-answered="makeFeedback">
+                </short-answer>
+                <sort-q v-else-if="qList[qToShow].qType === 'sort'" v-bind:q-data="qList[qToShow]"
+                    v-on:user-answered="makeFeedback">
+                </sort-q>
+                <div v-else>
+                    <h2>I don't know how to show the qType {{qList[qToShow].qType}}</h2>
+                    <short-answer v-bind:q-data="defaultQ" v-on:user-answered="makeFeedback"></short-answer>
+                </div>
+            </div>
+            <div v-if="showFeedback" id="feedback-space" key="showFB">
+                <p>Q:{{qList[qToShow].question}}</p>
+                <p>{{feedback[0]}}</p>
+                <p v-if="feedback[1]">{{feedback[1]}}</p>
+                <p v-if="feedback[2]">{{feedback[2]}}</p>
+                <button v-if="moreQs" v-on:click="nextQ">Next Q</button>
+                <p>{{qList.map(q => q.qType)}}</p>
+            </div>
+        </transition>
     </div>
+    <script src="dummyQs.js"></script>
+    <script src="./qTypeComponents/shortAnswer.js"></script>
+    <script src="./qTypeComponents/sortQ.js"></script>
     <script>
         var quiz = new Vue({
             el: "#container",
             data: {
                 score: 0, livesLeft: 3,
                 qToShow: 0, gotCorrect: 0,
-                qList: [
-                    { qType: 'Q and A', question: 'What is 2+1?', answer: 3 },
-                    { qType: 'Q and A', question: 'What is 2+2?', answer: 4 },
-                    { qType: 'Q and A', question: 'What is 2+3?', answer: 5 },
-                    { qType: 'Q and A', question: 'What is 2+4?', answer: 6 },
-                    { qType: 'Q and A', question: 'What is 2+5?', answer: 7 }
-                ],
+                qList: dummyQs,
+                defaultQ: defaultQ,
                 showFeedback: true, showFeedback: false, moreQs: true,
-                feedback: 'Correct!',
+                feedback: ['Correct!', 'Another message'],
                 userWasCorrect: false
             },
             methods: {
-                checkAnswer: function () {
-                    this.userWasCorrect = Math.random() < 0.5 ? true : false;
+                makeFeedback: function (ans) {
+                    console.log('makeFeedback was run ', ans)
+                    this.userWasCorrect = ans.status;
+                    this.feedback = [ans.mark, ans.extra]
                     if (this.userWasCorrect) {
                         this.score += 10;
-                        this.feedback = "Correct!! "
+                        // this.feedback = "Correct!! "
                         this.gotCorrect++;
                     } else {
                         this.livesLeft -= 1;
-                        this.feedback = "Wrong!"
+                        // this.feedback = "Wrong!"
                         if (this.livesLeft === 0) {
-                            this.feedback += " Out of juice! Final score is: "+this.score;
+                            this.feedback.push("Out of juice! Final score is: " + this.score);
                             this.moreQs = false;
                         }
                     }
                     this.showFeedback = true;
                     if (this.gotCorrect === this.qList.length) {
-                        this.feedback += " You have answered all the questions!"
+                        this.feedback.push("You have answered all the questions!")
                         this.moreQs = false;
                     }
                 },
@@ -74,6 +89,7 @@
                             this.qList[this.gotCorrect - 1] = this.qList[this.qToShow];
                             this.qList[this.qToShow] = temp
                         }
+                        this.userWasCorrect = false;
                     }
                     this.qToShow++
                     if (this.qToShow >= this.qList.length) { this.qToShow = this.gotCorrect }
