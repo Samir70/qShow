@@ -52,3 +52,7 @@ onDragEnter: function (event, item) {
  }
 }
 ```
+Then, even though I wasn't actually going to have a listener to the dragover event, I still needed to following so that the "not allowed" cursor would not be used when hovering over a dropzone.
+```
+v-on:dragover.prevent=""
+```
