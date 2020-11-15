@@ -56,3 +56,19 @@ Then, even though I wasn't actually going to have a listener to the dragover eve
 ```
 v-on:dragover.prevent=""
 ```
+The rest involved keeping track of the element we started dragging and the last element we dragged onto.
+```
+// in onDragStart
+this.draggedItemID = item.id;
+// in onDragEnter
+this.enteredElement = event.target;
+```
+Then, when drag ends, we just use those ids to figure out what the new array should look like. I then had to for Vue to rerender
+```
+this.$forceUpdate();
+```
+Which indicates that there is something fishy going on.
+
+In any case: I got it to work in Firefox/Chrome but not on mobile.
+
+This has been a good challenge. Options going forward are to look into something like [GreenSock's draggable](https://codepen.io/osublake/full/jrqjdy) or to just make it so clicking a line pushes it up one.
