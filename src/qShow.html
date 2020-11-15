@@ -26,7 +26,7 @@
                 <short-answer v-if="qList[qToShow].qType === 'shortAnswer'" v-bind:q-data="qList[qToShow]"
                     v-on:user-answered="makeFeedback">
                 </short-answer>
-                <sort-q v-if="qList[qToShow].qType === 'sort'" v-bind:q-data="qList[qToShow]"
+                <sort-q v-else-if="qList[qToShow].qType === 'sort'" v-bind:q-data="qList[qToShow]"
                     v-on:user-answered="makeFeedback">
                 </sort-q>
                 <div v-else>
