@@ -1,13 +1,13 @@
 const dummyQs = [
-  { qType: 'shortAnswer', question: 'What is 2+1?', answer: 3, feedback: '2+1 = 3' },
-  {
-    qType: 'multiChoice', question: 'What do you call the longest chord in a circle?',
-    answer: 'diameter', wrongOptions: ['radius', 'tangent', 'line']
-  },
   {
     qType: 'sort', question: 'Sort these decimals into ascending order',
     answer: [3.024, 3.1, 3.127, 3.14]
   },
+  {
+    qType: 'multiChoice', question: 'What do you call the longest chord in a circle?',
+    answer: 'diameter', wrongOptions: ['radius', 'tangent', 'line']
+  },
+  { qType: 'shortAnswer', question: 'What is 2+1?', answer: 3, feedback: '2+1 = 3' },
   {
     qType: 'match', question: 'Match the following:',
     pairs: [['London', 'England'], ['Paris', 'France'], ['Brussels', 'Belgium'], ['Athens', 'Greece']]

@@ -49,6 +49,30 @@ body {
     text-align: center;
 }
 
+/* specific to sortq */
+#sortq-list {
+    list-style: none outside none;
+}
+.sortq-li {
+    display: block;
+    background: white;
+    margin: 2px 7px 2px 0px;
+    padding-left: 3px;
+    text-align: left;
+    width: fit-content;
+    box-shadow: 3px 3px 5px 0px #ccc;
+    cursor: move;
+}
+.wrong-pos {
+    border-left: 3px solid red;
+}
+.right-pos {
+    border-left: 3px solid red;
+}
+.dragged-over {
+    border: 2px dashed blue;
+}
+
 /* Vue transition classes */
 
 .fade-enter-active, .fade-leave-active {
