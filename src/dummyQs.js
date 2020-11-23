@@ -4,6 +4,10 @@ const dummyQs = [
     answer: [3.024, 3.1, 3.127, 3.14], giveHint: true
   },
   {
+    qType: 'sort', question: 'Sort these numbers into ascending order',
+    answer: [-9, -4, -1, 3, 6], giveHint: true
+  },
+  {
     qType: 'multiChoice', question: 'What do you call the longest chord in a circle?',
     answer: 'diameter', wrongOptions: ['radius', 'tangent', 'line']
   },
@@ -24,6 +28,6 @@ const dummyQs = [
 
 const defaultQ = {
   qType: 'shortAnswer',
-  question: 'What is the answer to life, the universe and everything?', 
+  question: 'What is the answer to life, the universe and everything?',
   answer: 42, feedback: 'Brain the size of a planet...!'
 };
