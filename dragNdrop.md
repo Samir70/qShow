@@ -72,3 +72,6 @@ Which indicates that there is something fishy going on.
 In any case: I got it to work in Firefox/Chrome but not on mobile.
 
 This has been a good challenge. Options going forward are to look into something like [GreenSock's draggable](https://codepen.io/osublake/full/jrqjdy) or to just make it so clicking a line pushes it up one.
+
+## Using Sortable.js
+I prefered the look of GSAP's draggable, but found that [Vue.Draggable](https://github.com/SortableJS/Vue.Draggable) was easier. I did have trouble to begin with, when userAnswer was a computed property (as in the version above), but it worked when I just made it a data property. Maybe this would have simplified the GSAP version, so I will try again with GSAP at some point.
