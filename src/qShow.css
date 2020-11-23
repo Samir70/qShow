@@ -50,16 +50,15 @@ body {
 }
 
 /* specific to sortq */
-#sortq-list {
-    list-style: none outside none;
-}
 .sortq-li {
     display: block;
     background: white;
     margin: 2px 7px 2px 7px;
     padding-left: 3px;
+    width: auto;
+    height: 30px;
+    line-height: 30px;
     text-align: left;
-    width: fit-content;
     box-shadow: 3px 3px 5px 0px #ccc;
     cursor: move;
 }
@@ -72,9 +71,7 @@ body {
 .neutral-pos {
     border-left: 3px solid blue;
 }
-.dragged-over {
-    border: 2px dashed blue;
-}
+
 
 /* Vue transition classes */
 
