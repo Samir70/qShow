@@ -31,6 +31,9 @@
                 <sort-q v-else-if="qList[qToShow].qType === 'sort'" v-bind:q-data="qList[qToShow]"
                     v-on:user-answered="makeFeedback">
                 </sort-q>
+                <multi-choice-q v-else-if="qList[qToShow].qType === 'multiChoice'" v-bind:q-data="qList[qToShow]"
+                    v-on:user-answered="makeFeedback">
+                </multi-choice-q>
                 <div v-else>
                     <h2>I don't know how to show the qType {{qList[qToShow].qType}}</h2>
                     <short-answer v-bind:q-data="defaultQ" v-on:user-answered="makeFeedback"></short-answer>
@@ -49,6 +52,7 @@
     <script src="dummyQs.js"></script>
     <script src="./qTypeComponents/shortAnswer.js"></script>
     <script src="./qTypeComponents/sortQ.js"></script>
+    <script src="./qTypeComponents/multiChoiceQ.js"></script>
     <script>
         var quiz = new Vue({
             el: "#container",

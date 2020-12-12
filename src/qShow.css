@@ -72,6 +72,28 @@ body {
     border-left: 3px solid blue;
 }
 
+/* specific to multi-choice-q */
+#mcq-option-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.mcq-option {
+    flex: 1 1 150px;
+    margin: 5px;
+    padding: 5px;
+    font-size: large;
+    border-radius: 5%;
+    background: white;
+}
+.selected {
+    background: goldenrod;
+}
+
+.mcq-option:hover {
+    background: coral;
+}
+
 
 /* Vue transition classes */
 

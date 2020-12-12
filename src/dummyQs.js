@@ -1,15 +1,16 @@
 const dummyQs = [
   {
+    qType: 'multiChoice', question: 'What do you call the longest chord in a circle?',
+    answer: 'diameter', wrongOptions: ['radius', 'tangent', 'line'],
+    feedback: 'The longest chord of a circle is called the diameter.'
+  },
+  {
     qType: 'sort', question: 'Sort these decimals into ascending order',
     answer: [3.024, 3.1, 3.127, 3.14], giveHint: true
   },
   {
     qType: 'sort', question: 'Sort these numbers into ascending order',
     answer: [-9, -4, -1, 3, 6], giveHint: true
-  },
-  {
-    qType: 'multiChoice', question: 'What do you call the longest chord in a circle?',
-    answer: 'diameter', wrongOptions: ['radius', 'tangent', 'line']
   },
   { qType: 'shortAnswer', question: 'What is 2+1?', answer: 3, feedback: '2+1 = 3' },
   {
