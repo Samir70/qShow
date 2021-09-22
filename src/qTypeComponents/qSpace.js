@@ -24,7 +24,7 @@ Vue.component('q-space', {
                 this.livesLeft -= 1;
                 // this.feedback = "Wrong!"
                 if (this.livesLeft === 0) {
-                    this.feedback.push("Out of juice! Final score is: " + this.score);
+                    this.feedback.push("Out of juice! You got " + this.gotCorrect + " out of " + this.qList.length);
                     this.moreQs = false;
                 }
             }
