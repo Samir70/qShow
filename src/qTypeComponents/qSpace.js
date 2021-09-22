@@ -1,14 +1,15 @@
 Vue.component('q-space', {
     props: {
         qList: Array,
+        // gotCorrect: Number,
         defaultQ: Object
     },
     data: function () {
         return {
-            showFeedback: true, showFeedback: false, moreQs: true,
+            showFeedback: false, moreQs: true,
             feedback: ['Correct!', 'Another message'],
             userWasCorrect: false, livesLeft: 3,
-            qToShow:0 
+            qToShow: 0, answeredQs: new Set(), gotCorrect: 0
         }
     },
     methods: {
@@ -18,6 +19,7 @@ Vue.component('q-space', {
             this.feedback = [ans.mark, ans.extra]
             if (this.userWasCorrect) {
                 // this.feedback = "Correct!! "
+                this.gotCorrect++
             } else {
                 this.livesLeft -= 1;
                 // this.feedback = "Wrong!"
@@ -35,15 +37,15 @@ Vue.component('q-space', {
         },
         nextQ: function () {
             if (this.userWasCorrect) {
-                if (this.qToShow !== this.gotCorrect - 1) {
-                    let temp = this.qList[this.gotCorrect - 1];
-                    this.qList[this.gotCorrect - 1] = this.qList[this.qToShow];
-                    this.qList[this.qToShow] = temp
-                }
-                this.userWasCorrect = false;
+                this.answeredQs.add(this.qToShow)
             }
+            this.userWasCorrect = false;
             this.qToShow++
-            if (this.qToShow >= this.qList.length) { this.qToShow = this.gotCorrect }
+            if (this.qToShow >= this.qList.length) { this.qToShow = 0 }
+            while (this.answeredQs.has(this.qToShow)) {
+                this.qToShow++
+                if (this.qToShow >= this.qList.length) { this.qToShow = 0 }
+            }
             this.showFeedback = false;
         }
     },
@@ -70,7 +72,7 @@ Vue.component('q-space', {
             <p v-if="feedback[1]">{{feedback[1]}}</p>
             <p v-if="feedback[2]">{{feedback[2]}}</p>
             <button v-if="moreQs" v-on:click="nextQ">Next Q</button>
-            <p>{{qList.map(q => q.qType)}}</p>
+            <p>{{qList.map(q => q.qType)}} on Q {{qToShow}} got {{gotCorrect}}</p>
         </div>
     </transition>
     `
