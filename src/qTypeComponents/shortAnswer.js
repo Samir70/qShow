@@ -34,7 +34,6 @@ Vue.component('shortAnswer', {
                 mark = 'Wrong! '
             }
             let extra = (this.qData.feedback || blandFB)
-            // this.userWasCorrect = this.userAnswer === ''+this.ans; //Math.random() < 0.5 ? true : false;
             return {status: this.userWasCorrect, mark, extra}
         }
     },
