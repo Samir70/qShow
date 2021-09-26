@@ -1,5 +1,9 @@
 const dummyQs = [
   {
+    qType: 'match', question: 'Match the following:',
+    pairs: [['London', 'England'], ['Paris', 'France'], ['Brussels', 'Belgium'], ['Athens', 'Greece']]
+  },
+  {
     qType: 'multiChoice', question: 'What do you call the longest chord in a circle?',
     answer: 'diameter', wrongOptions: ['radius', 'tangent', 'line'],
     feedback: 'The longest chord of a circle is called the diameter.'
@@ -13,10 +17,6 @@ const dummyQs = [
     answer: [-9, -4, -1, 3, 6], giveHint: true
   },
   { qType: 'shortAnswer', question: 'What is 2+1?', answer: 3, feedback: '2+1 = 3' },
-  {
-    qType: 'match', question: 'Match the following:',
-    pairs: [['London', 'England'], ['Paris', 'France'], ['Brussels', 'Belgium'], ['Athens', 'Greece']]
-  },
   {
     qType: 'classify', question: 'Decide where each of these belongs',
     buckets: ['Primes', 'Composite'], items: [[2, 5, 3, 7, 11], [1, 4, 9, 15]]
