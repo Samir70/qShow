@@ -61,9 +61,9 @@ Vue.component('q-space', {
             <multi-choice-q v-else-if="qList[qToShow].qType === 'multiChoice'" v-bind:q-data="qList[qToShow]"
                 v-on:user-answered="makeFeedback">
             </multi-choice-q>
-            <multi-choice-q v-else-if="qList[qToShow].qType === 'match'" v-bind:q-data="qList[qToShow]"
+            <match-q v-else-if="qList[qToShow].qType === 'match'" v-bind:q-data="qList[qToShow]"
                 v-on:user-answered="makeFeedback">
-            </multi-choice-q>
+            </match-q>
             <div v-else>
                 <h2>I don't know how to show the qType {{qList[qToShow].qType}}</h2>
                 <short-answer v-bind:q-data="defaultQ" v-on:user-answered="makeFeedback"></short-answer>
