@@ -70,7 +70,7 @@ Vue.component('matchQ', {
     template: `
         <div>
             <p>{{qText}}</p>
-            <div id="match-cards">
+            <div id="mcq-option-list">
                 <div
                 v-for="item in cards" 
                 v-bind:key="item.id" 
