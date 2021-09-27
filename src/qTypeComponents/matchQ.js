@@ -23,17 +23,21 @@ Vue.component('matchQ', {
             for (let [a, b] of this.qData.pairs) {
                 out[a] = b; out[b] = a;
             }
-            console.log(out)
             return out
         }
     },
     methods: {
         checkAnswer: function () {
             let mark = '';
-            let blandFB = 'The answer is ' + this.ans
-            if (true/**test for correct */) {
+            let ans = this.qData.pairs.map(p => p.join(' and ')).join(', ')
+            let blandFB = 'The correct pairs are ' + ans
+            let count = 0;
+            for (let c of this.cards) {
+                if (c.class === 'mcq-option solved') {count++}
+            }
+            if (count === this.qData.pairs.length * 2) {
                 this.userWasCorrect = true;
-                mark = 'Correct! '
+                mark = 'Fantastic! '
             } else {
                 this.userWasCorrect = false;
                 mark = 'Wrong! '
@@ -42,7 +46,7 @@ Vue.component('matchQ', {
             return { status: this.userWasCorrect, mark, extra }
         },
         updateUserAnswer: function (tile) {
-            console.log('react to click on', tile)
+            // console.log('react to click on', tile)
             if (this.firstTile === '') {
                 this.firstTile = tile;
             } else {
@@ -74,7 +78,7 @@ Vue.component('matchQ', {
                 v-on:click="updateUserAnswer(item.text)">{{item.text}} 
             </div>
             </div>
-            <button v-on:click="checkAnswer; $emit('user-answered', checkAnswer())" >Check Answer</button>
+            <button v-on:click="checkAnswer; $emit('user-answered', checkAnswer())" >Submit Answer</button>
         </div>
     `
 })
