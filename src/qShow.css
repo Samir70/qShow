@@ -89,6 +89,9 @@ body {
 .selected {
     background: goldenrod;
 }
+.solved {
+    background: greenyellow;
+}
 
 .mcq-option:hover {
     background: coral;
